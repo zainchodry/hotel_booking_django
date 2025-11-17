@@ -1,0 +1,87 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+media
+staticfiles
+static
+
+# If your settings files have secrets
+.env
+.env.*
+
+# Backup files
+*.bak
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Pytest cache
+.pytest_cache/
+
+# Django migrations (optional - only if you're sure)
+# */migrations/*
+# !*/migrations/__init__.py
+
+# Security files
+*.pem
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+
+# Build stuff
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+
+# MyPy
+.mypy_cache/
+
+# Sphinx documentation
+docs/_build/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Pipenv
+Pipfile.lock
+
+# PyCharm
+*.iml
