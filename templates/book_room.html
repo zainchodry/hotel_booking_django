@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}Book Room{% endblock %}
+
+{% block content %}
+<style>
+  .booking-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background: linear-gradient(135deg, #f7f9fa, #ffffff);
+    border-radius: 15px;
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .booking-container:hover {
+    box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .booking-container h3 {
+    font-size: 1.8rem;
+    text-align: center;
+    font-weight: 600;
+    color: #343a40;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+  }
+
+  .booking-container form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .booking-container form input,
+  .booking-container form select,
+  .booking-container form textarea {
+    border-radius: 10px !important;
+    border: 1px solid #ced4da !important;
+    padding: 12px;
+    margin-bottom: 15px;
+    transition: all 0.2s ease;
+  }
+
+  .booking-container form input:focus,
+  .booking-container form select:focus,
+  .booking-container form textarea:focus {
+    border-color: #0d6efd !important;
+    box-shadow: 0px 0px 4px rgba(13, 110, 253, 0.25);
+  }
+
+  .booking-container .btn {
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 20px;
+  }
+
+  .booking-container .btn:hover {
+    background-color: #198754 !important;
+  }
+</style>
+
+<div class="booking-container">
+  <h3>Book Room: {{ room.room_number }} ({{ room.hotel.name }})</h3>
+  <p><strong>Price per Night:</strong> ${{ room.price_per_night }}</p>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success w-100">
+      Confirm Booking 📝
+    </button>
+  </form>
+</div>
+{% endblock %}

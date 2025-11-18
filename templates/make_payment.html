@@ -1,0 +1,47 @@
+{% extends 'accounts/base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Make Payment</h3>
+        </div>
+        <div class="card-body">
+            <h5 class="mb-3">Booking Reference: <strong>#{{ booking.id }}</strong></h5>
+            <p><strong>Room Number:</strong> {{ booking.room.room_number }}</p>
+            <p><strong>Price per Night:</strong> ${{ booking.room.price_per_night }}</p>
+
+            <form method="post" class="mt-4">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{ form.as_p }}
+                </div>
+                <button type="submit" class="btn btn-success w-100">Pay Now</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background: #f8f9fa;
+    }
+    .card {
+        border-radius: 10px;
+    }
+    .card-header {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    .btn-success {
+        padding: 10px;
+        font-size: 1.1rem;
+        border-radius: 5px;
+    }
+    form p {
+        margin-bottom: 1rem;
+    }
+    form label {
+        font-weight: 600;
+    }
+</style>
+{% endblock %}

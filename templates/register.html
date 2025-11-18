@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Sign up{% endblock %}
+
+{% block content %}
+<style>
+  .signup-form {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .signup-form:hover {
+    box-shadow: 0px 12px 30px rgba(0,0,0,0.15);
+  }
+
+  .signup-form h2 {
+    text-align: center;
+    font-weight: 700;
+    color: #007bff;
+    margin-bottom: 20px;
+  }
+
+  .form-field {
+    margin-bottom: 15px;
+  }
+
+  .form-field label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+    color: #343a40;
+  }
+
+  .form-field input, 
+  .form-field textarea,
+  .form-field select {
+    border-radius: 10px !important;
+    border: 1px solid #6c757d !important;
+    padding: 10px !important;
+  }
+
+  .form-field input:focus, 
+  .form-field textarea:focus {
+    box-shadow: 0px 0px 4px 2px rgba(0,123,255,0.25);
+    border: 1px solid #007bff !important;
+  }
+
+  .signup-form button {
+    border-radius: 25px;
+    font-size: 1.1rem;
+    padding: 10px 30px;
+    margin-top: 10px;
+    background: #007bff;
+    border: none;
+  }
+
+  .signup-form button:hover {
+    background-color: #0056b3;
+  }
+
+  .signup-form .footer-text {
+    text-align: center;
+    margin-top: 15px;
+  }
+</style>
+
+<div class="signup-form">
+  <h2>Create an Account</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    {% for fm in form %}
+      <div class="form-field">
+        {{ fm.label_tag }}
+        {{ fm }}
+        <small class="text-danger">{{ fm.errors|striptags }}</small>
+      </div>
+    {% endfor %}
+    
+    <h4 class="mt-4">Profile Information</h4>
+    {% for fm in profile_form %}
+      <div class="form-field">
+        {{ fm.label_tag }}
+        {{ fm }}
+      </div>
+    {% endfor %}
+
+    <button class="btn btn-primary w-100" type="submit">Register ✨</button>
+
+    <p class="footer-text">
+      Already have an account?
+      <a href="{% url 'login' %}" class="text-info">Login here</a>
+    </p>
+  </form>
+</div>
+
+{% endblock %}

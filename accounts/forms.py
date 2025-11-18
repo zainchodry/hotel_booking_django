@@ -31,12 +31,12 @@ class ProfileForm(forms.ModelForm):
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(
-        label="Email",
-        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter your email'})
+        label='Email',
+        widget=forms.EmailInput(attrs={'class': 'form-control'})
     )
     password = forms.CharField(
-        label="Password",
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter your password'})
+        label='Password',
+        widget=forms.PasswordInput(attrs={'class': 'form-control'})
     )
 
     def clean(self):
@@ -48,8 +48,8 @@ class LoginForm(AuthenticationForm):
                 user = User.objects.get(email=email)
                 self.cleaned_data['username'] = user.username
             except User.DoesNotExist:
-                raise forms.ValidationError("Invalid email address.")
+                raise forms.ValidationError("Invalid email or password")
         else:
-            raise forms.ValidationError("Both fields are required.")
-        
+            raise forms.ValidationError("Please enter both email and password")
+
         return super().clean()

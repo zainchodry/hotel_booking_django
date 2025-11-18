@@ -1,0 +1,87 @@
+{% extends 'base.html' %} {% block content %}
+
+<style>
+  .hotel-container {
+    max-width: 900px;
+    margin: 40px auto;
+  }
+
+  h2 {
+    text-align: center;
+    font-weight: 700;
+    color: #343a40;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  }
+
+  .hotel-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .hotel-card:hover {
+    border-color: #0d6efd;
+    box-shadow: 0 6px 20px rgba(13, 110, 253, 0.2);
+    transform: translateY(-4px);
+  }
+
+  .hotel-info {
+    flex: 1;
+  }
+
+  .hotel-info a {
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #0d6efd;
+  }
+
+  .hotel-info a:hover {
+    text-decoration: underline;
+  }
+
+  .hotel-image img {
+    border-radius: 10px;
+    width: 120px;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .no-hotels {
+    text-align: center;
+    font-style: italic;
+    color: #6c757d;
+    padding: 20px;
+  }
+</style>
+
+<div class="hotel-container">
+  <h2>Available Hotels 🏨</h2>
+
+  {% if hotels %} {% for hotel in hotels %}
+  <div class="hotel-card">
+    <div class="hotel-info">
+      <a href="{% url 'hotel:hotel_detail' hotel.id %}"> {{ hotel.name }} </a>
+      <p class="text-muted">{{ hotel.location }}</p>
+    </div>
+
+    {% if hotel.image %}
+    <div class="hotel-image">
+      <img src="{{ hotel.image.url }}" alt="Hotel Image" />
+    </div>
+    {% endif %}
+  </div>
+  {% endfor %} {% else %}
+  <p class="no-hotels">No hotels available at the moment.</p>
+  {% endif %}
+</div>
+
+{% endblock %}

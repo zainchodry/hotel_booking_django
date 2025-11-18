@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<style>
+  .login-form {
+    max-width: 450px;
+    margin: 50px auto;
+    padding: 30px;
+    background: linear-gradient(135deg, #f8f9fa, #eaecee);
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .login-form:hover {
+    box-shadow: 0px 12px 30px rgba(0,0,0,0.15);
+  }
+
+  .login-form h2 {
+    text-align: center;
+    font-weight: 700;
+    color: #343a40;
+    margin-bottom: 20px;
+  }
+
+  .form-field {
+    margin-bottom: 15px;
+  }
+
+  .form-field label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+    color: #495057;
+  }
+
+  .form-field input {
+    border-radius: 10px !important;
+    border: 1px solid #6c757d !important;
+    padding: 10px !important;
+  }
+
+  .form-field input:focus {
+    box-shadow: 0px 0px 4px 2px rgba(0,123,255,0.25);
+    border: 1px solid #007bff !important;
+  }
+
+  .login-form button {
+    border-radius: 25px;
+    font-size: 1.1rem;
+    padding: 10px 30px;
+    margin-top: 10px;
+    background: #007bff;
+    border: none;
+  }
+
+  .login-form button:hover {
+    background-color: #0056b3;
+  }
+
+  .login-footer {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .login-footer a {
+    color: #007bff;
+    font-weight: 500;
+  }
+
+</style>
+
+<div class="login-form">
+  <h2>Welcome Back 👋</h2>
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="form-field">
+        {{ field.label_tag }}
+        {{ field }}
+        <small class="text-danger">{{ field.errors|striptags }}</small>
+      </div>
+    {% endfor %}
+    <button class="btn btn-primary w-100" type="submit">Login 🚀</button>
+
+    <p class="login-footer">
+      Don’t have an account? <a href="{% url 'register' %}">Sign up here</a><br>
+    </p>
+  </form>
+</div>
+
+{% endblock %}
