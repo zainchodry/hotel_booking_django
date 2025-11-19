@@ -9,7 +9,7 @@ def make_payment(request, booking_id):
     booking = get_object_or_404(Booking, pk=booking_id, user=request.user)
     
     if hasattr(booking, 'payment') and booking.payment.is_paid:
-        return render(request, 'payments/payment_success.html', {'booking': booking})
+        return render(request, 'payment_success.html', {'booking': booking})
 
     if request.method == 'POST':
         form = PaymentForm(request.POST)
@@ -26,9 +26,9 @@ def make_payment(request, booking_id):
     else:
         form = PaymentForm()
 
-    return render(request, 'payments/make_payment.html', {'form': form, 'booking': booking})
+    return render(request, 'make_payment.html', {'form': form, 'booking': booking})
 
 @login_required
 def payment_success(request, booking_id):
     booking = get_object_or_404(Booking, pk=booking_id, user=request.user)
-    return render(request, 'payments/payment_success.html', {'booking': booking})
+    return render(request, 'payment_success.html', {'booking': booking})

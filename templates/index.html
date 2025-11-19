@@ -56,6 +56,27 @@
     transform: translateY(-2px);
   }
 
+  .pay-btn {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    background: #198754;
+  }
+
+  .pay-btn:hover {
+    background: #146c43;
+  }
+
+  .paid-badge {
+    padding: 6px 12px;
+    border-radius: 8px;
+    background: #0d6efd;
+    color: white;
+    font-weight: 600;
+  }
+
   .logout-btn {
     display: block;
     width: 150px;
@@ -82,8 +103,18 @@
     <ul class="bookings-list">
         {% for booking in bookings %}
             <li>
-                <span>Room: {{ booking.room }}</span>
-                <span>{{ booking.created_at|date:"Y-m-d H:i" }}</span>
+                <div>
+                    <strong>Room:</strong> {{ booking.room }} <br>
+                    <small>{{ booking.created_at|date:"Y-m-d H:i" }}</small>
+                </div>
+
+                <div>
+                    {% if booking.payment.is_paid %}
+                        <span class="paid-badge">Paid</span>
+                    {% else %}
+                        <a class="pay-btn" href="{% url 'payments:make_payment' booking.id %}">Pay Now</a>
+                    {% endif %}
+                </div>
             </li>
         {% empty %}
             <li>No recent bookings found.</li>

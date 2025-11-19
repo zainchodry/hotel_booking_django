@@ -47,7 +47,7 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item"><a class="nav-link" href="{% url 'payments:make_payment' 0 %}">Payments</a></li>
+                    {% comment %} <li class="nav-item"><a class="nav-link" href="{% url 'payments:payment_list' %}">Payments</a></li> {% endcomment %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">Profile</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
                 {% else %}
